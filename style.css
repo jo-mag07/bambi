@@ -1,0 +1,2512 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #0b2418;
+    color: white;
+
+    font-family: monospace;
+}
+
+.loading-screen {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #0b2418;
+
+    overflow: hidden;
+
+    z-index: 100;
+
+    transition: opacity 0.5s ease;
+}
+
+.loading-box {
+    position: relative;
+
+    width: min(90%, 420px);
+
+    padding: 35px 30px;
+
+    text-align: center;
+
+    background-color: #102d20;
+
+    border: 3px solid #7fbf8f;
+
+    box-shadow:
+        8px 8px 0 #06150e;
+
+    z-index: 2;
+}
+
+.loading-icon {
+    font-size: 42px;
+
+    margin-bottom: 10px;
+
+    animation: loadingIcon 1s ease-in-out infinite;
+}
+
+.loading-box h1 {
+    margin: 0;
+
+    font-size: 28px;
+}
+
+#loadingStatus {
+    margin-top: 25px;
+    margin-bottom: 12px;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+}
+
+.loading-progress-container {
+    width: 100%;
+    height: 18px;
+
+    background-color: #06150e;
+
+    border: 2px solid #7fbf8f;
+}
+
+#loadingProgressBar {
+    width: 0%;
+    height: 100%;
+
+    background-color: #69b578;
+
+    transition: width 0.08s linear;
+}
+
+#loadingPercentage {
+    margin-bottom: 0;
+
+    font-size: 13px;
+}
+
+
+/* FALLING PARTICLES */
+
+.loading-particles {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.loading-particles span {
+    position: absolute;
+
+    top: -50px;
+
+    font-size: 22px;
+
+    opacity: 0.8;
+
+    animation: fallingParticle linear infinite;
+}
+
+.loading-particles span:nth-child(1) {
+    left: 5%;
+    animation-duration: 4s;
+    animation-delay: -1s;
+}
+
+.loading-particles span:nth-child(2) {
+    left: 15%;
+    animation-duration: 5s;
+    animation-delay: -3s;
+}
+
+.loading-particles span:nth-child(3) {
+    left: 27%;
+    animation-duration: 4.5s;
+    animation-delay: -2s;
+}
+
+.loading-particles span:nth-child(4) {
+    left: 39%;
+    animation-duration: 6s;
+    animation-delay: -4s;
+}
+
+.loading-particles span:nth-child(5) {
+    left: 50%;
+    animation-duration: 5s;
+    animation-delay: -1.5s;
+}
+
+.loading-particles span:nth-child(6) {
+    left: 62%;
+    animation-duration: 4.5s;
+    animation-delay: -3.5s;
+}
+
+.loading-particles span:nth-child(7) {
+    left: 73%;
+    animation-duration: 5.5s;
+    animation-delay: -2.5s;
+}
+
+.loading-particles span:nth-child(8) {
+    left: 83%;
+    animation-duration: 4s;
+    animation-delay: -4.5s;
+}
+
+.loading-particles span:nth-child(9) {
+    left: 92%;
+    animation-duration: 6s;
+    animation-delay: -2s;
+}
+
+.loading-particles span:nth-child(10) {
+    left: 97%;
+    animation-duration: 4.8s;
+    animation-delay: -3s;
+}
+
+
+@keyframes fallingParticle {
+
+    0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.8;
+    }
+
+    90% {
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+
+@keyframes loadingIcon {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+}
+
+/* =========================
+   START BUTTON
+========================= */
+
+#startButton {
+    width: 100%;
+
+    margin-top: 20px;
+    padding: 13px 24px;
+
+    background-color: #31583b;
+    color: #6f8975;
+
+    border: 2px solid #49694f;
+
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: not-allowed;
+
+    box-shadow: 4px 4px 0 #06150e;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#startButton.ready {
+    background-color: #69b578;
+    color: #06150e;
+
+    border-color: #a8d8b0;
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 #06150e;
+}
+
+#startButton.ready:hover {
+    background-color: #7fc78c;
+}
+
+#startButton.ready:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 #06150e;
+}
+
+/* =========================
+   LOGIN SCREEN
+========================= */
+
+.login-screen {
+    width: 100%;
+    padding: 20px;
+}
+
+.login-box {
+    width: min(90%, 420px);
+    margin: auto;
+    padding: 35px 30px;
+
+    text-align: center;
+
+    background-color: #102d20;
+    border: 3px solid #7fbf8f;
+
+    box-shadow:
+        8px 8px 0 #06150e;
+}
+
+.login-box h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    font-size: 28px;
+}
+
+.login-box p {
+    color: #c5e3ca;
+}
+
+
+/* NAME INPUT */
+
+.login-box input {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 20px;
+    margin-bottom: 12px;
+
+    background-color: #06150e;
+    color: white;
+
+    border: 2px solid #7fbf8f;
+
+    font-family: monospace;
+    font-size: 16px;
+
+    outline: none;
+}
+
+.login-box input:focus {
+    border-color: #a8d8b0;
+
+    box-shadow:
+        0 0 0 2px rgba(127, 191, 143, 0.2);
+}
+
+.login-box input::placeholder {
+    color: #75957c;
+}
+
+
+/* VERIFY BUTTON */
+
+.login-box button {
+    width: 100%;
+
+    padding: 13px 24px;
+
+    background-color: #69b578;
+    color: #06150e;
+
+    border: 2px solid #a8d8b0;
+
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 4px 0 #06150e;
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+.login-box button:hover {
+    background-color: #7fc78c;
+}
+
+.login-box button:active {
+    transform: translate(3px, 3px);
+
+    box-shadow:
+        1px 1px 0 #06150e;
+}
+
+
+/* MESSAGE */
+
+#loginMessage {
+    min-height: 20px;
+    margin-bottom: 0;
+}
+
+
+/* GENERAL */
+
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    width: 100%;
+    padding: 20px;
+}
+
+/* =========================
+   GAME SCREEN
+========================= */
+
+#gameScreen {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+
+/* =========================
+   GAME BACKGROUND
+========================= */
+
+/* =========================
+   GAME AREA
+========================= */
+
+.game-area {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0b2418,
+            #00571d,
+            #003a11,
+            #104e28,
+            #004216
+        );
+
+    background-size: 400% 400%;
+    animation: greenGradient 8s ease infinite;
+}
+
+
+@keyframes greenGradient {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+.modal {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    padding: 20px;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-box {
+    width: min(90%, 420px);
+    margin: auto;
+    padding: 35px 30px;
+
+    text-align: center;
+
+    background-color: #102d20;
+    border: 3px solid #7fbf8f;
+
+    box-shadow:
+        8px 8px 0 #06150e;
+}
+
+.modal-box h2 {
+    margin-top: 0;
+}
+
+.modal-box button {
+    width: 100%;
+
+    padding: 13px 24px;
+
+    background-color: #69b578;
+    color: #06150e;
+
+    border: 2px solid #a8d8b0;
+
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 4px 0 #06150e;
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+.game-intro {
+    text-align: center;
+}
+
+.game-intro {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #0b2418;
+}
+
+.game-intro button {
+    width: 100%;
+
+    padding: 13px 24px;
+
+    background-color: #69b578;
+    color: #06150e;
+
+    border: 2px solid #a8d8b0;
+
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 4px 0 #06150e;
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+#countdown {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.countdown-animation {
+    animation: countdownFade 1s ease-in-out;
+}
+
+@keyframes countdownFade {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    30% {
+        opacity: 1;
+        transform: scale(0.7);
+    }
+
+    70% {
+        opacity: 1;
+        transform: scale(0.7);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+}
+
+#countdown {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    font-weight: bold;
+    color: white;
+    background-color: #0b2418;
+    z-index: 3;
+}
+
+.countdown-area {
+    background: #0b2418;
+    animation: none;
+}
+
+/* =========================
+   QUEST FALLING PARTICLES
+========================= */
+
+.quest-particles {
+    position: absolute;
+
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.quest-particles span {
+    position: absolute;
+
+    top: -50px;
+
+    font-size: 22px;
+
+    opacity: 0.45;
+
+    animation: questFallingParticle linear infinite;
+}
+
+
+/* PARTICLE POSITIONS */
+
+.quest-particles span:nth-child(1) {
+    left: 5%;
+    animation-duration: 5s;
+    animation-delay: -1s;
+}
+
+.quest-particles span:nth-child(2) {
+    left: 15%;
+    animation-duration: 6s;
+    animation-delay: -3s;
+}
+
+.quest-particles span:nth-child(3) {
+    left: 27%;
+    animation-duration: 5.5s;
+    animation-delay: -2s;
+}
+
+.quest-particles span:nth-child(4) {
+    left: 39%;
+    animation-duration: 7s;
+    animation-delay: -4s;
+}
+
+.quest-particles span:nth-child(5) {
+    left: 50%;
+    animation-duration: 5.5s;
+    animation-delay: -1.5s;
+}
+
+.quest-particles span:nth-child(6) {
+    left: 62%;
+    animation-duration: 6s;
+    animation-delay: -3.5s;
+}
+
+.quest-particles span:nth-child(7) {
+    left: 73%;
+    animation-duration: 6.5s;
+    animation-delay: -2.5s;
+}
+
+.quest-particles span:nth-child(8) {
+    left: 83%;
+    animation-duration: 5s;
+    animation-delay: -4.5s;
+}
+
+.quest-particles span:nth-child(9) {
+    left: 92%;
+    animation-duration: 7s;
+    animation-delay: -2s;
+}
+
+.quest-particles span:nth-child(10) {
+    left: 97%;
+    animation-duration: 5.8s;
+    animation-delay: -3s;
+}
+
+
+@keyframes questFallingParticle {
+
+    0% {
+        transform: translateY(-60px) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.45;
+    }
+
+    90% {
+        opacity: 0.45;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+
+}
+
+/* =========================
+   QUEST TITLE
+========================= */
+
+.quest-title {
+    position: absolute;
+
+    top: 25px;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    z-index: 2;
+}
+
+.quest-title h2 {
+    margin: 0 0 5px;
+}
+
+.quest-title p {
+    margin: 0;
+}
+
+.quest-notification {
+    position: absolute;
+    top: 18px;
+    left: 50%;
+
+    width: min(82%, 320px);
+
+    transform: translateX(-50%);
+
+    padding: 10px 12px;
+
+    background-color: #102d20;
+    border: 2px solid #7fbf8f;
+
+    box-shadow: 4px 4px 0 #06150e;
+
+    color: white;
+
+    text-align: center;
+
+    z-index: 20;
+
+    font-family: monospace;
+}
+
+.quest-notification h3 {
+    margin: 0 0 6px;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.quest-notification p {
+    margin: 0 0 10px;
+
+    font-size: 12px;
+    line-height: 1.4;
+
+    color: #c5e3ca;
+}
+
+.quest-notification button {
+    padding: 7px 16px;
+
+    background-color: #69b578;
+    color: #06150e;
+
+    border: 2px solid #a8d8b0;
+
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 3px 3px 0 #06150e;
+}
+
+.quest-notification button:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 #06150e;
+}
+
+.place-button {
+    position: absolute;
+    left: 50%;
+    bottom: 35px;
+    transform: translateX(-50%);
+
+    padding: 10px 22px;
+
+    background-color: #69b578;
+    color: #06150e;
+
+    border: 2px solid #a8d8b0;
+
+    font-family: monospace;
+    font-size: 13px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 #06150e;
+
+    z-index: 15;
+}
+
+.place-button:hover {
+    background-color: #7fc98b;
+}
+
+.place-button:active {
+    transform: translate(calc(-50% + 3px), 3px);
+    box-shadow: 1px 1px 0 #06150e;
+}
+
+.fire-buttons {
+    position: absolute;
+    left: 50%;
+    bottom: 35px;
+    transform: translateX(-50%);
+
+    display: flex;
+    gap: 20px;
+
+    z-index: 15;
+}
+
+.fire-button {
+    padding: 10px 14px;
+
+    background-color: #102d20;
+    color: #f7d76b;
+
+    border: 2px solid #7fbf8f;
+
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 4px 4px 0 #06150e;
+}
+
+.fire-button:hover {
+    background-color: #193d2a;
+}
+
+.fire-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 #06150e;
+}
+
+/* CANDLE */
+
+.number-candle {
+    position: absolute;
+    left: 117px;
+    top: -10px;
+
+    width: 30px;
+    height: 55px;
+
+    transform: translateY(-300px);
+
+    color: #f7d76b;
+    font-family: monospace;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 55px;
+
+    text-shadow: 3px 0 #8f6f2d, 0 3px #8f6f2d;
+
+    z-index: 5;
+}
+
+.candle-one {
+    left: 126px;
+}
+
+.candle-eight {
+    left: 159px;
+}
+
+
+
+.number-candle.candle-fall {
+    animation: candleFall 1s ease-in forwards;
+}
+
+@keyframes candleFall {
+
+    0% {
+        transform: translateY(-300px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+
+}
+
+.candle-verification {
+    position: absolute;
+    left: 50%;
+    bottom: 85px;
+    transform: translateX(-50%);
+
+    width: 210px;
+    padding: 12px;
+
+    background-color: #102d20;
+    border: 2px solid #7fbf8f;
+    box-shadow: 4px 4px 0 #06150e;
+
+    color: white;
+    text-align: center;
+
+    font-family: monospace;
+    z-index: 25;
+}
+
+.verification-icon {
+    font-size: 28px;
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+
+.candle-verification p {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.verification-check {
+    color: #8ee89b;
+}
+
+/* =========================
+   CANDLE FIRE
+   ========================= */
+
+.candle-flame {
+    position: absolute;
+
+    left: 50%;
+    bottom: 50px;
+
+    width: 30px;
+    height: 30px;
+
+    transform: translateX(-50%);
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+
+/* =========================
+   FLAME LAYERS
+   ========================= */
+
+.candle-flame .flame {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    opacity: 0.9;
+
+    width: 100%;
+    height: 100%;
+
+    border-bottom-right-radius: 70%;
+    border-bottom-left-radius: 70%;
+    border-top-left-radius: 70%;
+
+    transform:
+        rotate(-45deg)
+        skew(-10deg, -10deg);
+
+    background-color: #ff2200;
+
+    z-index: 1;
+
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+
+    animation-name: burn-left;
+    animation-duration: 300ms;
+}
+
+
+/* Alternating flame movement */
+
+.candle-flame .flame:nth-of-type(2n) {
+    animation-name: burn-right;
+    animation-duration: 400ms;
+}
+
+
+/* =========================
+   ORANGE LAYER
+   ========================= */
+
+.candle-flame .flame-orange {
+    height: 80%;
+    width: 80%;
+
+    left: 10%;
+
+    background-color: #ff6a00;
+
+    background-image:
+        linear-gradient(
+            to bottom left,
+            rgba(255, 106, 0, 0.1),
+            rgba(255, 200, 0, 0.1)
+        );
+
+    z-index: 2;
+}
+
+
+/* =========================
+   YELLOW LAYER
+   ========================= */
+
+.candle-flame .flame-yellow {
+    height: 50%;
+    width: 50%;
+
+    left: 25%;
+
+    background-image:
+        linear-gradient(
+            to bottom left,
+            #ffc800,
+            #ffffff
+        );
+
+    z-index: 3;
+}
+
+
+/* =========================
+   HOT CORE
+   ========================= */
+
+.candle-flame .flame-core {
+    height: 30%;
+    width: 30%;
+
+    left: 35%;
+
+    background-color: white;
+
+    background-image:
+        linear-gradient(
+            to bottom left,
+            rgba(255, 255, 255, 0.3),
+            rgba(0, 55, 255, 0.9)
+        );
+
+    opacity: 1;
+
+    z-index: 4;
+}
+
+
+/* =========================
+   FLAME FLICKER
+   ========================= */
+
+@keyframes burn-left {
+
+    0%,
+    100% {
+        transform:
+            rotate(-45deg)
+            skew(-10deg, -10deg)
+            scale(1);
+    }
+
+    30%,
+    60% {
+        transform:
+            rotate(-44deg)
+            skew(-12deg, -12deg)
+            scale(1.01);
+    }
+}
+
+
+@keyframes burn-right {
+
+    0%,
+    100% {
+        transform:
+            rotate(-45deg)
+            skew(-10deg, -10deg)
+            scale(1);
+    }
+
+    30%,
+    60% {
+        transform:
+            rotate(-46deg)
+            skew(-6deg, -6deg)
+            scale(1.01);
+    }
+}
+
+
+/* =========================
+   SPARKS
+   ========================= */
+
+.candle-flame .spark {
+    position: absolute;
+
+    bottom: 46%;
+    left: 15%;
+
+    width: 2px;
+    height: 2px;
+
+    background-color:
+        rgba(255, 106, 0, 0.7);
+
+    animation-name: fly-up-burnout-1;
+    animation-duration: 6s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    animation-delay: 0.4s;
+}
+
+
+/* Different spark positions/timings */
+
+.candle-flame .spark:nth-of-type(6n) {
+    animation-name: fly-up-burnout-2;
+    animation-duration: 8.4s;
+    animation-delay: 1s;
+}
+
+.candle-flame .spark:nth-of-type(7n) {
+    animation-delay: 1.9s;
+    animation-duration: 8s;
+    left: 55%;
+}
+
+.candle-flame .spark:nth-of-type(8n) {
+    animation-delay: 2.6s;
+    animation-duration: 7s;
+    left: 88%;
+}
+
+.candle-flame .spark:nth-of-type(9n) {
+    animation-delay: 1.4s;
+    animation-duration: 7s;
+    left: 22%;
+}
+
+.candle-flame .spark:nth-of-type(10n) {
+    animation-delay: 3.2s;
+    left: 61%;
+}
+
+.candle-flame .spark:nth-of-type(11n) {
+    animation-delay: 0.8s;
+    animation-duration: 5s;
+    left: 64%;
+}
+
+.candle-flame .spark:nth-of-type(12n) {
+    animation-delay: 5s;
+    left: 19%;
+}
+
+
+/* =========================
+   SPARK ANIMATIONS
+   ========================= */
+
+@keyframes fly-up-burnout-1 {
+
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    33% {
+        transform: translate(6px, -25px);
+    }
+
+    66% {
+        transform: translate(0, -50px);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(3px, -70px);
+        opacity: 0;
+    }
+}
+
+
+@keyframes fly-up-burnout-2 {
+
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(-5px, -30px);
+    }
+
+    80% {
+        transform: translate(-2px, -50px);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translate(-3px, -65px);
+        opacity: 0;
+    }
+}
+
+/* PROGRESSION */
+
+/* =========================
+   FIRE POWER LEVELS
+   ========================= */
+
+
+/* 3–4 CLICKS
+   Tiny ember */
+
+.candle-flame.flame-power-small {
+    transform:
+        translateX(-50%)
+        scale(0.45);
+}
+
+
+/* 5–6 CLICKS
+   Small flame */
+
+.candle-flame.flame-power-medium {
+    transform:
+        translateX(-50%)
+        scale(0.65);
+}
+
+
+/* 7–9 CLICKS
+   Large flame */
+
+.candle-flame.flame-power-large {
+    transform:
+        translateX(-50%)
+        scale(0.82);
+}
+
+
+/* 10 CLICKS
+   Full flame */
+
+.candle-flame.flame-power-full {
+    transform:
+        translateX(-50%)
+        scale(1);
+}
+
+/* =========================
+   CAKE SCENE
+========================= */
+
+.cake-scene {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 320px;
+    height: 320px;
+
+    margin-left: -160px;
+    margin-top: -160px;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   CAKE
+========================= */
+
+.cake {
+    position: absolute;
+
+    left: 50%;
+    top: 35px;
+
+    width: 150px;
+    height: 120px;
+
+    transform: translateX(-50%) translateY(-300px);
+
+    z-index: 2;
+}
+
+
+/* CAKE TOP */
+
+.cake-top {
+    position: absolute;
+
+    top: 0;
+    left: 10px;
+
+    width: 130px;
+    height: 25px;
+
+    background-color: #f2c6a0;
+}
+
+
+/* FROSTING */
+
+.cake-frosting {
+    position: absolute;
+
+    top: 25px;
+    left: 10px;
+
+    width: 130px;
+    height: 30px;
+
+    background-color: #fff0f5;
+
+    z-index: 2;
+}
+
+
+/* CAKE BODY */
+
+.cake-body {
+    position: absolute;
+
+    top: 45px;
+    left: 10px;
+
+    width: 130px;
+    height: 55px;
+
+    background-color: #8b4a32;
+
+}
+
+
+/* CAKE BOTTOM */
+
+.cake-bottom {
+    position: absolute;
+
+    top: 100px;
+    left: 5px;
+
+    width: 140px;
+    height: 20px;
+
+    background-color: #6b3527;
+
+}
+
+
+/* =========================
+   CAKE LANDING
+========================= */
+
+.cake-land {
+    animation: cakeFall 1s ease-in forwards;
+}
+
+@keyframes cakeFall {
+
+    0% {
+        transform: translateX(-50%) translateY(-300px);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+}
+
+.scene-shake {
+    animation: sceneShake 0.25s ease-in-out;
+}
+
+@keyframes sceneShake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(2px);
+    }
+
+    40% {
+        transform: translateX(-2px);
+    }
+
+    60% {
+        transform: translateX(2px);
+    }
+
+    80% {
+        transform: translateX(-1px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+/* =========================
+   CAKE LANDING SPLASH
+========================= */
+
+.landing-splash {
+    position: absolute;
+
+    left: 50%;
+    top: 125px;
+
+    width: 10px;
+    height: 10px;
+
+    pointer-events: none;
+
+    z-index: 3;
+}
+
+.landing-splash span {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    background-color: #fff0f5;
+
+    opacity: 0;
+}
+
+.landing-splash.active span {
+    animation: landingSplash 150ms ease-out forwards;
+}
+
+/* Different directions */
+
+.landing-splash span:nth-child(1) {
+    --x: -95px;
+    --y: 35px;
+}
+
+.landing-splash span:nth-child(2) {
+    --x: -110px;
+    --y: 5px;
+}
+
+.landing-splash span:nth-child(3) {
+    --x: -95px;
+    --y: -35px;
+}
+
+.landing-splash span:nth-child(4) {
+    --x: -60px;
+    --y: -65px;
+}
+
+.landing-splash span:nth-child(5) {
+    --x: 0px;
+    --y: -80px;
+}
+
+.landing-splash span:nth-child(6) {
+    --x: 60px;
+    --y: -65px;
+}
+
+.landing-splash span:nth-child(7) {
+    --x: 95px;
+    --y: -35px;
+}
+
+.landing-splash span:nth-child(8) {
+    --x: 110px;
+    --y: 5px;
+}
+
+@keyframes landingSplash {
+
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(var(--x), var(--y))
+            scale(0.5);
+    }
+
+}
+
+/* TABLE */
+
+.table {
+    position: absolute;
+
+    left: 50%;
+    bottom: 35px;
+
+    width: 280px;
+    height: 130px;
+
+    transform: translateX(-50%);
+}
+
+
+/* Table top */
+
+.table-top {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 280px;
+    height: 45px;
+
+    background-color: #8b5a2b;
+
+    box-shadow:
+        inset 0 8px #a86f36,
+        inset 0 -8px #65401f;
+}
+
+
+/* Table legs */
+
+.table-leg {
+    position: absolute;
+
+    top: 40px;
+
+    width: 35px;
+    height: 110px;
+
+    background-color: #6b431f;
+
+}
+
+.table-leg.left {
+    left: 20px;
+}
+
+.table-leg.right {
+    right: 20px;
+}
+
+/* CAKE DETAILS!!! */
+
+
+/* CAKE TOP DETAILS */
+
+.cake-decoration {
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    background-color: #d96b91;
+
+    box-shadow: 3px 3px 0 #a83f65;
+}
+
+.decoration-1 {
+    left: 25px;
+    top: 5px;
+}
+
+.decoration-2 {
+    left: 58px;
+    top: 8px;
+}
+
+.decoration-3 {
+    right: 25px;
+    top: 5px;
+}
+
+
+/* FROSTING DRIPS */
+
+.cake-frosting {
+    position: absolute;
+}
+
+.frosting-drip {
+    position: absolute;
+
+    width: 18px;
+    height: 25px;
+
+    background-color: #fff0f5;
+
+}
+
+.drip-1 {
+    left: 20px;
+    top: 13px;
+}
+
+.drip-2 {
+    left: 55px;
+    top: 22px;
+    height: 23px;
+}
+
+.drip-3 {
+    right: 20px;
+    top: 17px;
+}
+
+
+/* CAKE BODY PIXELS */
+
+.cake-pixel {
+    position: absolute;
+
+    width: 12px;
+    height: 12px;
+
+    background-color: #b96845;
+}
+
+.pixel-1 {
+    left: 18px;
+    top: 30px;
+}
+
+.pixel-2 {
+    right: 25px;
+    top: 33px;
+}
+
+.pixel-3 {
+    left: 65px;
+    top: 38px;
+}
+
+
+/* TABLE DETAILS */
+
+.table-top {
+    background-color: #8b5a2b;
+
+    box-shadow:
+        inset 0 8px #a86f36,
+        inset 0 -8px #65401f,
+        inset 0 -2px #432914;
+}
+
+
+/* WOOD PLANK LINES */
+
+.table-top::before,
+.table-top::after {
+    content: "";
+
+    position: absolute;
+
+    left: 10px;
+
+    width: 250px;
+    height: 4px;
+
+    background-color: #65401f;
+}
+
+.table-top::before {
+    top: 13px;
+}
+
+.table-top::after {
+    bottom: 12px;
+}
+
+
+/* TABLE LEG DETAILS */
+
+.table-leg::before {
+    content: "";
+
+    position: absolute;
+
+    left: 5px;
+    top: 20px;
+
+    width: 15px;
+    height: 6px;
+
+    background-color: #8b5a2b;
+
+    box-shadow:
+        0 25px #8b5a2b,
+        0 50px #8b5a2b;
+}
+
+/* MORE DETAILS RAAHHH */
+
+/* CAKE SHADING */
+
+.cake-top {
+    box-shadow:
+        inset 0 -6px #d99f7c;
+}
+
+.cake-body {
+    box-shadow:
+        inset 12px 0 #a85b3d,
+        inset -12px 0 #6f3829;
+}
+
+.cake-bottom {
+    box-shadow:
+        inset 0 6px #85422f;
+}
+
+
+/* FROSTING HIGHLIGHTS */
+
+.cake-frosting::before {
+    content: "";
+
+    position: absolute;
+
+    left: 15px;
+    top: 4px;
+
+    width: 35px;
+    height: 5px;
+
+    background-color: white;
+}
+
+
+/* FROSTING DRIPS */
+
+.frosting-drip {
+    background-color: #fff0f5;
+}
+
+
+/* EXTRA CAKE DECORATIONS */
+
+.cake-decoration {
+    width: 10px;
+    height: 10px;
+
+    box-shadow: none;
+}
+
+.decoration-1 {
+    left: 20px;
+    top: 7px;
+}
+
+.decoration-2 {
+    left: 60px;
+    top: 4px;
+}
+
+.decoration-3 {
+    right: 20px;
+    top: 7px;
+}
+
+
+/* CAKE PIXELS */
+
+.cake-pixel {
+    width: 9px;
+    height: 9px;
+
+    background-color: #c47752;
+}
+
+.pixel-1 {
+    left: 18px;
+    top: 18px;
+}
+
+.pixel-2 {
+    right: 22px;
+    top: 30px;
+}
+
+.pixel-3 {
+    left: 60px;
+    top: 40px;
+}
+
+
+/* =========================
+   TABLE DETAILS
+========================= */
+
+.table-top {
+    box-shadow:
+        inset 0 8px #a86f36,
+        inset 0 -8px #65401f;
+}
+
+
+/* WOOD GRAIN */
+
+.table-top::before {
+    content: "";
+
+    position: absolute;
+
+    left: 25px;
+    top: 12px;
+
+    width: 80px;
+    height: 4px;
+
+    background-color: #70451f;
+
+    box-shadow:
+        110px 0 #70451f,
+        40px 14px #6b401c,
+        160px 14px #6b401c;
+}
+
+
+/* TABLE FRONT EDGE */
+
+.table-top::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 100%;
+    height: 8px;
+
+    background-color: #4d2e17;
+}
+
+
+/* TABLE LEGS */
+
+.table-leg {
+    box-shadow:
+        inset 8px 0 #815225,
+        inset -8px 0 #4d2e17;
+}
+
+/*Dripping Animation*/
+
+.drip-drop {
+    position: absolute;
+    top: 18px;
+
+    width: 6px;
+    height: 6px;
+
+    background-color: #fff0f5;
+
+    opacity: 0;
+}
+
+.drip-drop::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 3px;
+    height: 3px;
+
+    background-color: #fff0f5;
+
+    box-shadow:
+        -5px 0 #fff0f5,
+        5px 0 #fff0f5;
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%) scale(0.5);
+}
+
+.drip-drop.dripping::after {
+    animation: dripSplash 160ms ease-out 350ms forwards;
+}
+
+@keyframes dripSplash {
+
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+
+}
+
+/* =========================
+   HEAVY FROSTING DRIP
+========================= */
+
+.heavy-drip {
+    position: absolute;
+
+    top: 15px;
+    left: 65px;
+
+    width: 9px;
+    height: 9px;
+
+    background-color: #fff0f5;
+
+    opacity: 0;
+    transform-origin: top center;
+}
+
+.heavy-drip.active {
+    animation: heavyDrip 1.8s linear forwards;
+}
+
+.heavy-drip::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 0;
+
+    width: 5px;
+    height: 5px;
+
+    background-color: #fff0f5;
+
+    box-shadow:
+        -6px 0 #fff0f5,
+        6px 0 #fff0f5;
+
+    opacity: 0;
+
+    transform: translate(-50%, 50%) scale(0.5);
+}
+
+.heavy-drip.active::after {
+    animation: heavyDripSplash 180ms ease-out 1.55s forwards;
+}
+
+@keyframes heavyDrip {
+
+    0% {
+        opacity: 0;
+        transform: scaleX(1) scaleY(0.6);
+    }
+
+    15% {
+        opacity: 1;
+        transform: scaleX(1) scaleY(1);
+    }
+
+    45% {
+        transform: scaleX(1.15) scaleY(1.8);
+    }
+
+    80% {
+        transform: translateY(35px) scaleX(1.15) scaleY(2.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(50px) scaleX(1.1) scaleY(1);
+    }
+
+}
+
+@keyframes heavyDripSplash {
+
+    0% {
+        opacity: 1;
+        transform: translate(-50%, 50%) scale(0.5);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-50%, 50%) scale(1.8);
+    }
+
+}
+
+/*friggin countdown*/
+
+#countdown {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 100px;
+    font-weight: bold;
+
+    z-index: 3;
+}
+
+.birthday-surprise {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 20;
+}
+
+/* BALLOONS */
+
+.balloon {
+    position: absolute;
+    font-size: 55px;
+    opacity: 0;
+    animation: balloonPop 0.8s ease-out forwards;
+}
+
+.balloon-green {
+    left: 8%;
+    top: 35%;
+}
+
+.balloon-red {
+    right: 8%;
+    top: 35%;
+}
+
+@keyframes balloonPop {
+
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.25);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+
+/* PARTY HATS */
+
+.party-hat {
+    position: absolute;
+    font-size: 45px;
+    opacity: 0;
+    animation: hatPop 0.7s ease-out forwards;
+}
+
+.hat-one {
+    left: 20%;
+    top: 15%;
+}
+
+.hat-two {
+    right: 20%;
+    top: 15%;
+}
+
+@keyframes hatPop {
+
+    0% {
+        transform: scale(0) rotate(-30deg);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.2) rotate(10deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1) rotate(0);
+        opacity: 1;
+    }
+
+}
+
+.confetti-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+}
+
+.confetti-piece {
+    position: absolute;
+
+    width: var(--size);
+    height: calc(var(--size) * 0.55);
+
+    background: #85ff95;
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%) scale(0);
+
+    animation: confettiExplosion 2.8s ease-out forwards;
+}
+
+@keyframes confettiExplosion {
+
+    0% {
+        opacity: 1;
+        transform:
+            translate(-50%, -50%)
+            scale(0.3)
+            rotate(0deg);
+    }
+
+    20% {
+        opacity: 1;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1)
+            rotate(var(--rotation));
+    }
+
+    65% {
+        opacity: 1;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y) + var(--fall))
+            )
+            scale(1)
+            rotate(calc(var(--rotation) + 360deg));
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y) + var(--fall) + 180px)
+            )
+            scale(0.8)
+            rotate(calc(var(--rotation) + 720deg));
+    }
+}
+
+.emoji-confetti-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+
+    width: 1px;
+    height: 1px;
+
+    pointer-events: none;
+}
+
+.emoji-confetti {
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    font-size: var(--size);
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(0);
+
+    animation:
+        emojiConfettiExplosion
+        3.5s
+        ease-out
+        forwards;
+}
+
+@keyframes emojiConfettiExplosion {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translate(-50%, -50%)
+            scale(0.2)
+            rotate(0deg);
+    }
+
+    15% {
+        opacity: 1;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1)
+            rotate(var(--rotation));
+    }
+
+    55% {
+        opacity: 1;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y) + var(--fall))
+            )
+            scale(1)
+            rotate(
+                calc(var(--rotation) + 360deg)
+            );
+    }
+
+    100% {
+        opacity: 0;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(
+                    -50% +
+                    var(--y) +
+                    var(--fall) +
+                    180px
+                )
+            )
+            scale(0.7)
+            rotate(
+                calc(var(--rotation) + 720deg)
+            );
+    }
+}
+
+.final-birthday-notification {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.65);
+
+    z-index: 100;
+
+    animation: birthdayMessageAppear 0.8s ease-out forwards;
+}
+
+.final-birthday-content {
+    width: min(90%, 600px);
+    max-height: 80%;
+
+    background: #f5f0d8;
+
+    border: 5px solid #315c3a;
+
+    border-radius: 12px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 0 0 4px #172b1d,
+        0 10px 30px rgba(0, 0, 0, 0.5);
+
+    overflow: hidden;
+}
+
+.final-birthday-layout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: min(95%, 1000px);
+}
+
+.lyric-container {
+    width: 230px;
+    min-height: 130px;
+
+    background: #172b1d;
+    border: 4px solid #315c3a;
+    border-radius: 10px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 0 0 3px #0d1a11,
+        0 8px 20px rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    font-family: monospace;
+}
+
+.lyric-label {
+    margin-bottom: 15px;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    color: #b7d7a8;
+    letter-spacing: 1px;
+}
+
+.lyric-text {
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: bold;
+
+    color: #f5f0d8;
+
+    min-height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.return-container {
+    width: 230px;
+    margin-top: 12px;
+}
+
+#returnButton {
+    width: 100%;
+    padding: 13px 24px;
+
+    background-color: #69b578;
+    color: #06150e;
+
+    border: 2px solid #a8d8b0;
+
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        4px 4px 0 #06150e;
+
+    transition:
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+#returnButton:hover {
+    transform: translate(2px, 2px);
+
+    box-shadow:
+        2px 2px 0 #06150e;
+}
+
+#returnButton:active {
+    transform: translate(4px, 4px);
+
+    box-shadow:
+        0 0 0 #06150e;
+}
+
+.final-birthday-content h1 {
+    margin: 0 0 20px;
+
+    text-align: center;
+
+    font-family: monospace;
+
+    font-size: clamp(28px, 7vw, 52px);
+
+    line-height: 1.1;
+
+    color: #315c3a;
+
+    text-shadow:
+        3px 3px 0 #b7d7a8;
+}
+
+.birthday-message {
+    max-height: 45vh;
+
+    overflow-y: auto;
+
+    padding: 5px 15px 10px;
+
+    font-family: monospace;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    color: #263c2c;
+}
+
+.birthday-message p {
+    margin: 0 0 20px;
+}
+
+@keyframes birthdayMessageAppear {
+
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+
+/* Progress: 8:09PM */
